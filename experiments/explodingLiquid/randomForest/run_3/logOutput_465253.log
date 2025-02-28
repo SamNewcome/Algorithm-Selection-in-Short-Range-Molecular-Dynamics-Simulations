@@ -1,0 +1,10 @@
+#==================================================#
+ num nodes:  2
+ num tasks:  6
+ cpus per task:  24
+ nodes used:  node[0097,0109]
+ job cpus used:  144(x2)
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+cp: -r not specified; omitting directory '../run_1'
+cp: -r not specified; omitting directory '../run_2'

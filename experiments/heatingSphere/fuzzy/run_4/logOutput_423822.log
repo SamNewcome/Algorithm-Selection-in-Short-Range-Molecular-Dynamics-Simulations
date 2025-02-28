@@ -1,0 +1,238 @@
+#==================================================#
+ num nodes:  1
+ num tasks:  1
+ cpus per task:  36
+ nodes used:  node0185
+ job cpus used:  144
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VerletClusterLists, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.05
+verlet-cluster-size              :  4
+selector-strategy                :  Fastest-Mean-Value
+tuning-strategies                :  [fuzzy-tuning]
+tuning-metric                    :  time
+tuning-interval                  :  10000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+fuzzy-rule-filename              :  fuzzyRulesSuitability.frule
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c01, lc_c01_combined_SoA, lc_c04, lc_c04_HCP, lc_c04_combined_SoA, lc_c08, lc_c18, lc_sliced, lc_sliced_c02, vl_list_iteration, vlc_c01, vlc_c18, vlc_c08, vlc_sliced, vlc_sliced_c02, vlp_c01, vlp_c18, vlp_sliced, vlp_sliced_c02]
+  data-layout                    :  [AoS, SoA]
+  newton3                        :  [disabled, enabled]
+cutoff                           :  3
+box-min                          :  [0, 0, 0]
+box-max                          :  [200, 200, 200]
+cell-size                        :  [0.5, 1]
+deltaT                           :  0.0001
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  150000
+boundary-type                    :  [reflective, reflective, reflective]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  Sphere:
+    0:  
+      center                     :  [100, 100, 100]
+      radius                     :  10
+      particle-spacing           :  1.22462
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+thermostat:
+  initialTemperature             :  0.1
+  targetTemperature              :  100
+  deltaTemperature               :  0.1
+  thermostatInterval             :  100
+  addBrownianMotion              :  true
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  InvertedPressure
+load-balancing-interval          :  100
+subdivide-dimension              :  [true, true, true]
+
+
+Using 36 Threads
+MPI is running with 1 ranks.
+[2025-02-21 17:19:32.456] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-21 17:19:32.456] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+[2025-02-21 17:19:32.463] [AutoPasLog] [info] [FuzzyTuning.cpp:65] FuzzyTuning initialized with the following Rules:
+[2025-02-21 17:19:32.463] [AutoPasLog] [info] [FuzzyTuning.cpp:66] 
+Settings:
+	defuzzificationMethod: centerOfGravity
+	interpretOutputAs: Suitability
+	suitabilityThreshold: 0.3
+
+[2025-02-21 17:19:32.463] [AutoPasLog] [info] [FuzzyTuning.cpp:67] 
+LinguisticVariable: domain: "meanParticlesPerCell" range: (0, 1000)
+	"High": Trapezoid(130.000000, 170.000000, 200.000000, 230.000000)
+	"Low": Trapezoid(0.300000, 0.500000, 2.000000, 6.000000)
+	"Medium": Trapezoid(2.000000, 6.000000, 130.000000, 170.000000)
+	"Very High": Trapezoid(200.000000, 250.000000, 1000.000000, 1000.000000)
+	"Very Low": Trapezoid(0.000000, 0.000000, 0.300000, 0.500000)
+LinguisticVariable: domain: "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+LinguisticVariable: domain: "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" range: (0, 1)
+	"Bad": Trapezoid(0.000000, 0.000000, 0.200000, 0.400000)
+	"Good": Trapezoid(0.600000, 0.800000, 1.000000, 1.000000)
+	"Okay": Trapezoid(0.200000, 0.400000, 0.600000, 0.800000)
+
+[2025-02-21 17:19:32.463] [AutoPasLog] [info] [FuzzyTuning.cpp:68] 
+OutputMapper: Suitability LinkedCells_AoS_lc_c01_disabled_CSF1
+  1.000000 -> [LinkedCells; lc_c01; ; ; AoS; disabled; 1.000000] 
+OutputMapper: Suitability LinkedCells_AoS_lc_c04_enabled_CSF1
+  1.000000 -> [LinkedCells; lc_c04; ; ; AoS; enabled; 1.000000] 
+OutputMapper: Suitability LinkedCells_AoS_lc_c08_enabled_CSF1
+  1.000000 -> [LinkedCells; lc_c08; ; ; AoS; enabled; 1.000000] 
+OutputMapper: Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5
+  1.000000 -> [LinkedCells; lc_c01_combined_SoA; ; ; SoA; disabled; 0.500000] 
+OutputMapper: Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1
+  1.000000 -> [LinkedCells; lc_c01_combined_SoA; ; ; SoA; disabled; 1.000000] 
+OutputMapper: Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5
+  1.000000 -> [LinkedCells; lc_c01; ; ; SoA; disabled; 0.500000] 
+OutputMapper: Suitability LinkedCells_SoA_lc_c01_disabled_CSF1
+  1.000000 -> [LinkedCells; lc_c01; ; ; SoA; disabled; 1.000000] 
+OutputMapper: Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1
+  1.000000 -> [LinkedCells; lc_c04_HCP; ; ; SoA; enabled; 1.000000] 
+OutputMapper: Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5
+  1.000000 -> [LinkedCells; lc_c08; ; ; SoA; enabled; 0.500000] 
+OutputMapper: Suitability LinkedCells_SoA_lc_c08_enabled_CSF1
+  1.000000 -> [LinkedCells; lc_c08; ; ; SoA; enabled; 1.000000] 
+OutputMapper: Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1
+  1.000000 -> [VerletLists; vl_list_iteration; ; ; AoS; disabled; 1.000000] 
+
+[2025-02-21 17:19:32.463] [AutoPasLog] [info] [FuzzyTuning.cpp:69] 
+FuzzyControlSystem: "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Bad"
+FuzzyControlSystem: "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad"
+FuzzyControlSystem: "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Bad"
+FuzzyControlSystem: "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Okay"
+FuzzyControlSystem: "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad"
+FuzzyControlSystem: "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Okay"
+FuzzyControlSystem: "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Bad"
+FuzzyControlSystem: "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Bad"
+FuzzyControlSystem: "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Good"
+FuzzyControlSystem: "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Bad"
+FuzzyControlSystem: "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1"
+	FuzzyRule: "meanParticlesPerCell" == "Very Low"  ==>  "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Good"
+	FuzzyRule: "meanParticlesPerCell" == "Low"  ==>  "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Okay"
+	FuzzyRule: "meanParticlesPerCell" == "Medium"  ==>  "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "High"  ==>  "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Bad"
+	FuzzyRule: "meanParticlesPerCell" == "Very High"  ==>  "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Bad"
+
+Number of particles at initialization on rank 0: 5497
+Number of particles at initialization globally : 5497
+[2025-02-21 17:19:33.012] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:22:19.284] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:25:04.792] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:27:49.654] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:30:26.571] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:33:02.859] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:35:38.856] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:38:15.296] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:40:51.745] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:43:27.869] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:46:04.371] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:48:41.053] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:51:17.175] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:53:53.944] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:56:30.179] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by fuzzy-tuning detected! Resetting to previous state: (Size=0) []

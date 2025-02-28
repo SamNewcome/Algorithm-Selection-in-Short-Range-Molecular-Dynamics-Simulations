@@ -1,0 +1,127 @@
+#==================================================#
+ num nodes:  1
+ num tasks:  1
+ cpus per task:  36
+ nodes used:  node0461
+ job cpus used:  144
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+cp: -r not specified; omitting directory '../run_1'
+cp: -r not specified; omitting directory '../run_3'
+cp: -r not specified; omitting directory '../run_4'
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VerletClusterLists, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.05
+verlet-cluster-size              :  4
+selector-strategy                :  Fastest-Absolute-Value
+tuning-strategies                :  []
+tuning-metric                    :  time
+tuning-interval                  :  10000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c04]
+  data-layout                    :  [AoS]
+  newton3                        :  [enabled]
+cutoff                           :  3
+box-min                          :  [0, 0, 0]
+box-max                          :  [200, 200, 200]
+cell-size                        :  [1]
+deltaT                           :  0.0001
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  150000
+boundary-type                    :  [reflective, reflective, reflective]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  Sphere:
+    0:  
+      center                     :  [100, 100, 100]
+      radius                     :  10
+      particle-spacing           :  1.22462
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+thermostat:
+  initialTemperature             :  0.1
+  targetTemperature              :  100
+  deltaTemperature               :  0.1
+  thermostatInterval             :  100
+  addBrownianMotion              :  true
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  InvertedPressure
+load-balancing-interval          :  100
+subdivide-dimension              :  [true, true, true]
+
+
+Using 36 Threads
+MPI is running with 1 ranks.
+[2025-02-22 16:21:23.308] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-22 16:21:23.308] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank 0: 5497
+Number of particles at initialization globally : 5497
+
+
+Total number of particles at the end of Simulation: 5497
+Owned: 5497
+Halo : 0
+Measurements:
+Total accumulated                  : 2423972166994 ns (2423.972s)
+  Initialization                   :      90669699 ns (   0.091s) =  0.004%
+  Simulate                         : 2423881496373 ns (2423.881s) = 99.996%
+    PositionUpdate                 :   18348490473 ns (  18.348s) =  0.757%
+    UpdateContainer                :   93474831056 ns (  93.475s) =  3.856%
+    Boundaries                     :  255230368429 ns ( 255.230s) = 10.530%
+      HaloParticleExchange         :  255170417836 ns ( 255.170s) = 12.727%
+      ReflectParticlesAtBoundaries : 1749739351860 ns (1749.739s) = 87.270%
+      MigratingParticleExchange    :      59950593 ns (   0.060s) =  0.003%
+    ForceUpdateTotal               :  275896153837 ns ( 275.896s) = 11.382%
+      ForceUpdateNonTuning         :  275759085348 ns ( 275.759s) = 99.950%
+    VelocityUpdate                 :   26158155664 ns (  26.158s) =  1.079%
+    Thermostat                     :     555099401 ns (   0.555s) =  0.023%
+    LoadBalancing                  :    4154978351 ns (   4.155s) =  0.171%
+One iteration                      :      16159209 ns (   0.016s) =  0.001%
+Total wall-clock time              : 2423972166994 ns (2423.972s) =100.000%
+
+Tuning iterations                  : 0 / 150000 = 0%
+MFUPs/sec                          : 2.98862
+########################################
+#            Job Accounting            #
+########################################
+Name                : HS_LCC04
+User                : newcomes
+Account             : hsuper
+Partition           : small
+QOS                 : normal
+NNodes              : 1
+Nodes               : node0461
+Cores               : 144 (72 physical)
+GPUs                : 0
+State               : COMPLETED
+ExitCode            : 0:0
+Submit              : 2025-02-22T16:20:59
+Start               : 2025-02-22T16:21:19
+End                 : 2025-02-22T17:01:47
+Waited              : 00:00:20
+Reserved walltime   : 03:00:00
+Used walltime       : 00:40:28
+Used CPU time       : 12:51:49 (Efficiency: 26.49%)
+% User (Computation): 99.96%
+% System (I/O)      :  0.04%
+Mem reserved        : 245000M
+Max Mem used        : 249.65M (node0461)
+Max Disk Write      : 18.18M (node0461)
+Max Disk Read       : 3.14M (node0461)
+Energy (CPU+Mem)    : 0.24kWh (0.10kg CO2, 0.12€)

@@ -1,0 +1,71 @@
+#==================================================#
+ num nodes:  1
+ num tasks:  1
+ cpus per task:  36
+ nodes used:  node0252
+ job cpus used:  144
+#==================================================#
+cp: -r not specified; omitting directory '../run_1'
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VerletClusterLists, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.05
+verlet-cluster-size              :  4
+selector-strategy                :  Fastest-Absolute-Value
+tuning-strategies                :  []
+tuning-metric                    :  time
+tuning-interval                  :  10000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c08]
+  data-layout                    :  [SoA]
+  newton3                        :  [disabled]
+cutoff                           :  3
+box-min                          :  [0, 0, 0]
+box-max                          :  [200, 200, 200]
+cell-size                        :  [0.5]
+deltaT                           :  0.0001
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  150000
+boundary-type                    :  [reflective, reflective, reflective]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  Sphere:
+    0:  
+      center                     :  [100, 100, 100]
+      radius                     :  10
+      particle-spacing           :  1.22462
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+thermostat:
+  initialTemperature             :  0.1
+  targetTemperature              :  100
+  deltaTemperature               :  0.1
+  thermostatInterval             :  100
+  addBrownianMotion              :  true
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  InvertedPressure
+load-balancing-interval          :  100
+subdivide-dimension              :  [true, true, true]
+
+
+Using 36 Threads
+MPI is running with 1 ranks.
+[2025-02-22 04:56:32.028] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-22 04:56:32.028] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank 0: 5497
+Number of particles at initialization globally : 5497

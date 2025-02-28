@@ -1,0 +1,148 @@
+#==================================================#
+ num nodes:  2
+ num tasks:  6
+ cpus per task:  24
+ nodes used:  node[0111,0133]
+ job cpus used:  144(x2)
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+cp: -r not specified; omitting directory '../run_1'
+cp: -r not specified; omitting directory '../run_2'
+cp: -r not specified; omitting directory '../run_3'
+cp: -r not specified; omitting directory '../run_4'
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VarVerletListsAsBuild, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.06
+selector-strategy                :  Fastest-Mean-Value
+tuning-strategies                :  [decision-tree-tuning]
+tuning-metric                    :  time
+tuning-interval                  :  1000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+model-filename                   :  model.pkl
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c01, lc_c01_combined_SoA, lc_c04, lc_c04_HCP, lc_c04_combined_SoA, lc_c08, lc_c18, lc_sliced, lc_sliced_c02, vl_list_iteration, vlc_c01, vlc_c18, vlc_c08, vlc_sliced, vlc_sliced_c02, vlp_c01, vlp_c18, vlp_sliced, vlp_sliced_c02]
+  data-layout                    :  [AoS, SoA]
+  newton3                        :  [disabled, enabled]
+cutoff                           :  3
+box-min                          :  [-0.5, 0, -0.5]
+box-max                          :  [120.5, 480, 120.5]
+cell-size                        :  [1]
+deltaT                           :  0.00182367
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  100000
+boundary-type                    :  [periodic, periodic, periodic]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  CubeUniform:
+    0:  
+      numberOfParticles          :  100
+      box-length                 :  [120, 230, 120]
+      bottomLeftCorner           :  [0, 0, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+  CubeUniform:
+    1:  
+      numberOfParticles          :  100
+      box-length                 :  [120, 230, 120]
+      bottomLeftCorner           :  [0, 250, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+  CubeClosestPacked:
+    0:  
+      particle-spacing           :  1
+      box-length                 :  [120, 18, 120]
+      bottomLeftCorner           :  [0, 231, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  None
+load-balancing-interval          :  1000
+subdivide-dimension              :  [false, true, false]
+
+
+Using 24 Threads
+MPI is running with 6 ranks.
+[2025-02-28 17:29:34.604] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-28 17:29:34.604] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank 1: 44
+Number of particles at initialization on rank 2: 194062
+Number of particles at initialization on rank 3: 176428
+Number of particles at initialization on rank 4: 46
+Number of particles at initialization on rank 0: 34
+Number of particles at initialization globally : 370640
+Number of particles at initialization on rank 5: 26
+
+
+Total number of particles at the end of Simulation: 470103
+Owned: 370640
+Halo : 99463
+Measurements:
+Total accumulated                  : 14716347785773 ns (14716.348s)
+  Initialization                   :     7826884920 ns (    7.827s) =  0.053%
+  Simulate                         : 14708520895485 ns (14708.521s) = 99.947%
+    PositionUpdate                 :   100011280460 ns (  100.011s) =  0.680%
+    UpdateContainer                :   179617737743 ns (  179.618s) =  1.221%
+    Boundaries                     : 11242553816897 ns (11242.554s) = 76.436%
+      HaloParticleExchange         :  7202478581762 ns ( 7202.479s) = 64.064%
+      ReflectParticlesAtBoundaries :      145327390 ns (    0.145s) =  0.001%
+      MigratingParticleExchange    :  4040075235135 ns ( 4040.075s) = 35.935%
+    ForceUpdateTotal               :  3077120044069 ns ( 3077.120s) = 20.921%
+      Tuning                       :    70622935153 ns (   70.623s) =  2.295%
+      ForceUpdateTuning            :    70622935153 ns (   70.623s) =  2.295%
+      ForceUpdateNonTuning         :  3006078165517 ns ( 3006.078s) = 97.691%
+    VelocityUpdate                 :   107688134497 ns (  107.688s) =  0.732%
+    LoadBalancing                  :      181834224 ns (    0.182s) =  0.001%
+One iteration                      :      147085208 ns (    0.147s) =  0.001%
+Total wall-clock time              :  2452724599805 ns ( 2452.725s) = 16.667%
+
+Tuning iterations                  : 1000 / 100000 = 1%
+MFUPs/sec                          : 5.30415
+########################################
+#            Job Accounting            #
+########################################
+Name                : EL_RF
+User                : newcomes
+Account             : hsuper
+Partition           : small
+QOS                 : normal
+NNodes              : 2
+Nodes               : node[0111,0133]
+Cores               : 288 (144 physical)
+GPUs                : 0
+State               : COMPLETED
+ExitCode            : 0:0
+Submit              : 2025-02-28T17:20:00
+Start               : 2025-02-28T17:29:30
+End                 : 2025-02-28T18:10:27
+Waited              : 00:09:30
+Reserved walltime   : 02:00:00
+Used walltime       : 00:40:57
+Used CPU time       : 2-14:02:35 (Efficiency: 63.13%)
+% User (Computation): 99.95%
+% System (I/O)      :  0.05%
+Mem reserved        : 490000M
+Max Mem used        : 3.10G (node0133,node0111)
+Max Disk Write      : 48.89M (node0133,node0111)
+Max Disk Read       : 14.34G (node0133,node0111)
+Energy (CPU+Mem)    : 0.58kWh (0.24kg CO2, 0.30€)

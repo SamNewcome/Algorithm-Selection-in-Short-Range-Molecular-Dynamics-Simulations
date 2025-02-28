@@ -1,0 +1,116 @@
+#==================================================#
+ num nodes:  2
+ num tasks:  6
+ cpus per task:  24
+ nodes used:  node[0395,0401]
+ job cpus used:  144(x2)
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+cp: -r not specified; omitting directory '../run_1'
+cp: -r not specified; omitting directory '../run_3'
+cp: -r not specified; omitting directory '../run_4'
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VarVerletListsAsBuild, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.06
+selector-strategy                :  Fastest-Mean-Value
+tuning-strategies                :  []
+tuning-metric                    :  time
+tuning-interval                  :  2000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c04_HCP]
+  data-layout                    :  [SoA]
+  newton3                        :  [enabled]
+cutoff                           :  3
+box-min                          :  [-0.5, 0, -0.5]
+box-max                          :  [120.5, 480, 120.5]
+cell-size                        :  [1]
+deltaT                           :  0.00182367
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  100000
+boundary-type                    :  [periodic, periodic, periodic]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  CubeUniform:
+    0:  
+      numberOfParticles          :  100
+      box-length                 :  [120, 230, 120]
+      bottomLeftCorner           :  [0, 0, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+  CubeUniform:
+    1:  
+      numberOfParticles          :  100
+      box-length                 :  [120, 230, 120]
+      bottomLeftCorner           :  [0, 250, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+  CubeClosestPacked:
+    0:  
+      particle-spacing           :  1
+      box-length                 :  [120, 18, 120]
+      bottomLeftCorner           :  [0, 231, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  None
+load-balancing-interval          :  1000
+subdivide-dimension              :  [false, true, false]
+
+
+Using 24 Threads
+MPI is running with 6 ranks.
+[2025-02-22 05:33:32.569] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-22 05:33:32.569] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank 1: 44
+Number of particles at initialization on rank 2: 194062
+Number of particles at initialization on rank 3: 176428
+Number of particles at initialization on rank 4: 46
+Number of particles at initialization on rank 0: 34
+Number of particles at initialization globally : 370640
+Number of particles at initialization on rank 5: 26
+
+
+Total number of particles at the end of Simulation: 476686
+Owned: 370640
+Halo : 106046
+Measurements:
+Total accumulated                  : 14649298091265 ns (14649.298s)
+  Initialization                   :     1307008119 ns (    1.307s) =  0.009%
+  Simulate                         : 14647991077626 ns (14647.991s) = 99.991%
+    PositionUpdate                 :    99080443815 ns (   99.080s) =  0.676%
+    UpdateContainer                :   178168258408 ns (  178.168s) =  1.216%
+    Boundaries                     : 11320824863476 ns (11320.825s) = 77.286%
+      HaloParticleExchange         :  7282618960128 ns ( 7282.619s) = 64.329%
+      ReflectParticlesAtBoundaries :      138554027 ns (    0.139s) =  0.001%
+      MigratingParticleExchange    :  4038205903348 ns ( 4038.206s) = 35.670%
+    ForceUpdateTotal               :  2941100672437 ns ( 2941.101s) = 20.079%
+      ForceUpdateNonTuning         :  2940737069067 ns ( 2940.737s) = 99.988%
+    VelocityUpdate                 :   107367561813 ns (  107.368s) =  0.733%
+    LoadBalancing                  :      181503197 ns (    0.182s) =  0.001%
+One iteration                      :      146479910 ns (    0.146s) =  0.001%
+Total wall-clock time              :  2441550318876 ns ( 2441.550s) = 16.667%
+
+Tuning iterations                  : 0 / 100000 = 0%
+MFUPs/sec                          : 5.39696

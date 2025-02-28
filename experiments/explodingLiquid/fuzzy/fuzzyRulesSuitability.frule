@@ -1,0 +1,256 @@
+# The file describes a unique fuzzy system for each possible configuration. Each fuzzy system then tries to predict the
+# suitability of the corresponding configuration. The suitability is a value between 0 and 1, where 0 means that the
+# configuration is not suitable and 1 means that the configuration is very suitable.
+
+# Setup
+
+# Here global settings for all fuzzy systems can be defined.
+# Currently it is not possible to define different settings for different fuzzy systems.
+FuzzySystemSettings:
+	defuzzificationMethod: "centerOfGravity"
+	interpretOutputAs: "Suitability"
+	suitabilityThreshold: "0.3"
+
+
+# Fuzzy Variables
+
+# Next all of the fuzzy variables are defined. Each fuzzy variable has a domain and a range.
+# The domain specifies the input for the fuzzy variable. At the moment it is only possible to use
+# values of the LiveInfoStruct as domain. The range of this variable also needs to be passed as it
+# is important for the defuzzification process.
+# Each fuzzy variable can have multiple fuzzy sets. Each fuzzy set is defined by a name and a membership function.
+
+## Inputs
+
+FuzzyVariable: domain: "meanParticlesPerCell" range: (0, 1000)
+	"Very Low": 		        Trapezoid(0,0,0.3,0.5)
+	"Low": 		                Trapezoid(0.3, 0.5, 2, 6)
+	"Medium":                   Trapezoid(2,6,130,170)
+	"High":                     Trapezoid(130, 170, 200, 230)  
+	"Very High":                Trapezoid(200,250,1000,1000)
+
+
+# Outputs
+
+# Next all of the outputs are defined. In this case each combination of Containers has a unique output variable.
+
+FuzzyVariable: domain: "Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" range: (0,1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+FuzzyVariable: domain: "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+FuzzyVariable: domain: "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+FuzzyVariable: domain: "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+
+FuzzyVariable: domain: "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+
+FuzzyVariable: domain: "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+FuzzyVariable: domain: "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+FuzzyVariable: domain: "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+
+FuzzyVariable: domain: "Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+
+FuzzyVariable: domain: "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+	
+FuzzyVariable: domain: "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" range: (0, 1)
+	"Bad":                  Trapezoid(0, 0, 0.2, 0.4)
+	"Okay":                 Trapezoid(0.2, 0.4, 0.6, 0.8)
+	"Good":                 Trapezoid(0.6, 0.8, 1, 1)
+
+
+# Output Mapping
+
+# The OutputMapping specify how the results of the fuzzy system should be mapped to the actual configurations which should be tested.
+# In this case each fuzzy variable only has a single configuration, namely itself.
+
+OutputMapping:
+	"Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1":
+        1 => 	[container="VerletLists", dataLayout="AoS", traversal="vl_list_iteration", newton3="disabled", cellSizeFactor="1.0"]
+    "Suitability LinkedCells_AoS_lc_c04_enabled_CSF1":
+        1 => 	[container="LinkedCells", dataLayout="AoS", traversal="lc_c04", newton3="enabled", cellSizeFactor="1.0"]
+        
+    "Suitability LinkedCells_AoS_lc_c01_disabled_CSF1":
+        1 => 	[container="LinkedCells", dataLayout="AoS", traversal="lc_c01", newton3="disabled", cellSizeFactor="1.0"]
+    "Suitability LinkedCells_AoS_lc_c08_enabled_CSF1":
+        1 => 	[container="LinkedCells", dataLayout="AoS", traversal="lc_c08", newton3="enabled", cellSizeFactor="1.0"]
+        
+    "Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1":
+        1 => 	[container="LinkedCells", dataLayout="SoA", traversal="lc_c04_HCP", newton3="enabled", cellSizeFactor="1.0"]
+    "Suitability LinkedCells_SoA_lc_c08_enabled_CSF1":
+        1 => 	[container="LinkedCells", dataLayout="SoA", traversal="lc_c08", newton3="enabled", cellSizeFactor="1.0"]
+    "Suitability LinkedCells_SoA_lc_c01_disabled_CSF1":
+        1 => 	[container="LinkedCells", dataLayout="SoA", traversal="lc_c01", newton3="disabled", cellSizeFactor="1.0"]
+    "Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1":
+        1 => 	[container="LinkedCells", dataLayout="SoA", traversal="lc_c01_combined_SoA", newton3="disabled", cellSizeFactor="1"]
+
+	"Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5":
+        1 => 	[container="LinkedCells", dataLayout="SoA", traversal="lc_c08", newton3="enabled", cellSizeFactor="0.5"]
+	"Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5":
+        1 => 	[container="LinkedCells", dataLayout="SoA", traversal="lc_c01_combined_SoA", newton3="disabled", cellSizeFactor="0.5"]
+    "Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5":
+        1 => 	[container="LinkedCells", dataLayout="SoA", traversal="lc_c01", newton3="disabled", cellSizeFactor="0.5"]
+
+# Rules
+
+# The rules define how the input variables are combined to output variables and should encode the expert knowledge.
+# The rules are defined in a simple if-then format.
+
+
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Bad")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Bad")
+if ("meanParticlesPerCell" == "Very Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Bad")
+	
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Bad")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Bad")
+if ("meanParticlesPerCell" == "Low")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Bad")
+	
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Good")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Bad")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Bad")
+if ("meanParticlesPerCell" == "Medium")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Bad")
+	
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Okay")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Good")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Good")
+if ("meanParticlesPerCell" == "High")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Good")
+	
+	
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability VerletLists_AoS_vl_list_iteration_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_AoS_lc_c04_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_AoS_lc_c01_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_AoS_lc_c08_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_SoA_lc_c04_HCP_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF1" == "Bad")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_SoA_lc_c08_enabled_CSF0.5" == "Good")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_SoA_lc_c01_combined_SoA_disabled_CSF0.5" == "Okay")
+if ("meanParticlesPerCell" == "Very High")
+	then ("Suitability LinkedCells_SoA_lc_c01_disabled_CSF0.5" == "Okay")
+	
+
+	
+	
+
+
+
+
+

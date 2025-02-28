@@ -1,0 +1,8 @@
+#==================================================#
+ num nodes:  1
+ num tasks:  1
+ cpus per task:  36
+ nodes used:  node0286
+ job cpus used:  144
+#==================================================#
+cp: -r not specified; omitting directory '../archive'

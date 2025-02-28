@@ -1,0 +1,161 @@
+#==================================================#
+ num nodes:  1
+ num tasks:  1
+ cpus per task:  36
+ nodes used:  node0536
+ job cpus used:  144
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VerletClusterLists, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.05
+verlet-cluster-size              :  4
+selector-strategy                :  Fastest-Absolute-Value
+tuning-strategies                :  [slow-config-filter, predictive-tuning]
+tuning-metric                    :  time
+tuning-interval                  :  10000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+relative-optimum-range           :  2
+max-tuning-phases-without-test   :  4
+evidence-for-prediction          :  3
+extrapolation-method             :  line-prediction
+relative-blacklist-range         :  10
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c01, lc_c01_combined_SoA, lc_c04, lc_c04_HCP, lc_c04_combined_SoA, lc_c08, lc_c18, lc_sliced, lc_sliced_c02, vl_list_iteration, vlc_c01, vlc_c18, vlc_c08, vlc_sliced, vlc_sliced_c02, vlp_c01, vlp_c18, vlp_sliced, vlp_sliced_c02]
+  data-layout                    :  [AoS, SoA]
+  newton3                        :  [disabled, enabled]
+cutoff                           :  3
+box-min                          :  [0, 0, 0]
+box-max                          :  [200, 200, 200]
+cell-size                        :  [0.5, 1]
+deltaT                           :  0.0001
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  150000
+boundary-type                    :  [reflective, reflective, reflective]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  Sphere:
+    0:  
+      center                     :  [100, 100, 100]
+      radius                     :  10
+      particle-spacing           :  1.22462
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+thermostat:
+  initialTemperature             :  0.1
+  targetTemperature              :  100
+  deltaTemperature               :  0.1
+  thermostatInterval             :  100
+  addBrownianMotion              :  true
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  InvertedPressure
+load-balancing-interval          :  100
+subdivide-dimension              :  [true, true, true]
+
+
+Using 36 Threads
+MPI is running with 1 ranks.
+[2025-02-21 17:07:01.786] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-21 17:07:01.786] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank 0: 5497
+Number of particles at initialization globally : 5497
+[2025-02-21 17:08:04.426] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:08:04.426] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:12:37.385] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:12:37.385] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:15:09.661] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:15:09.661] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:17:54.179] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:17:54.179] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:20:37.581] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:20:37.581] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:23:33.511] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:23:33.511] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:26:09.962] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:26:09.962] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:28:54.126] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:28:54.126] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:31:36.771] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:31:36.771] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:34:30.466] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:34:30.466] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:37:07.214] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:37:07.214] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:39:51.682] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:39:51.682] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:42:34.402] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:42:34.402] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:45:28.198] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:45:28.198] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:48:05.112] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by slow-config-filter detected! Resetting to previous state: (Size=0) []
+[2025-02-21 17:48:05.112] [AutoPasLog] [warning] [AutoTuner.cpp:101] ConfigQueue wipe by predictive-tuning detected! Resetting to previous state: (Size=0) []
+
+
+Total number of particles at the end of Simulation: 5497
+Owned: 5497
+Halo : 0
+Measurements:
+Total accumulated                  : 2624635060238 ns (2624.635s)
+  Initialization                   :      82283412 ns (   0.082s) =  0.003%
+  Simulate                         : 2624552775958 ns (2624.553s) = 99.997%
+    PositionUpdate                 :   21122639806 ns (  21.123s) =  0.805%
+    UpdateContainer                :   98356468612 ns (  98.356s) =  3.748%
+    Boundaries                     :  258250276468 ns ( 258.250s) =  9.840%
+      HaloParticleExchange         :  258183382822 ns ( 258.183s) = 12.758%
+      ReflectParticlesAtBoundaries : 1765467653362 ns (1765.468s) = 87.239%
+      MigratingParticleExchange    :      66893646 ns (   0.067s) =  0.003%
+    ForceUpdateTotal               :  437378099829 ns ( 437.378s) = 16.665%
+      Tuning                       :  150399531691 ns ( 150.400s) = 34.387%
+      ForceUpdateTuning            :  150399531691 ns ( 150.400s) = 34.387%
+      ForceUpdateNonTuning         :  286839131833 ns ( 286.839s) = 65.582%
+    VelocityUpdate                 :   38760535410 ns (  38.761s) =  1.477%
+    Thermostat                     :     706331288 ns (   0.706s) =  0.027%
+    LoadBalancing                  :    4239669176 ns (   4.240s) =  0.162%
+One iteration                      :      17497018 ns (   0.017s) =  0.001%
+Total wall-clock time              : 2624635060238 ns (2624.635s) =100.000%
+
+Tuning iterations                  : 4370 / 150000 = 2.91333%
+MFUPs/sec                          : 1.88521
+########################################
+#            Job Accounting            #
+########################################
+Name                : HS_PT
+User                : newcomes
+Account             : hsuper
+Partition           : small
+QOS                 : normal
+NNodes              : 1
+Nodes               : node0536
+Cores               : 144 (72 physical)
+GPUs                : 0
+State               : COMPLETED
+ExitCode            : 0:0
+Submit              : 2025-02-21T11:01:03
+Start               : 2025-02-21T17:06:58
+End                 : 2025-02-21T17:50:46
+Waited              : 06:05:55
+Reserved walltime   : 03:00:00
+Used walltime       : 00:43:48
+Used CPU time       : 14:12:44 (Efficiency: 27.04%)
+% User (Computation): 99.95%
+% System (I/O)      :  0.05%
+Mem reserved        : 245000M
+Max Mem used        : 861.66M (node0536)
+Max Disk Write      : 19.80M (node0536)
+Max Disk Read       : 3.18M (node0536)
+Energy (CPU+Mem)    : 0.26kWh (0.11kg CO2, 0.13€)

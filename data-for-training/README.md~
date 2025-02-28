@@ -1,0 +1,3 @@
+To avoid storing significant data, only the input file templates and the python scripts used to generate the data are stored.
+
+Note: when this data was originally generated, we also considered Verlet Cluster Lists and CSF 0.33. The former was removed due to a bug in that container - which doesn't affect the paper and will ideally be fixed soon. The later was removed as it was was selected with the sigma parameters used in this paper, and it expensive to generate.

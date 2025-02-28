@@ -1,0 +1,97 @@
+#==================================================#
+ num nodes:  1
+ num tasks:  1
+ cpus per task:  36
+ nodes used:  node0485
+ job cpus used:  144
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+cp: -r not specified; omitting directory '../run_4'
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VerletClusterLists, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.05
+verlet-cluster-size              :  4
+selector-strategy                :  Fastest-Absolute-Value
+tuning-strategies                :  []
+tuning-metric                    :  time
+tuning-interval                  :  10000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c04]
+  data-layout                    :  [AoS]
+  newton3                        :  [enabled]
+cutoff                           :  3
+box-min                          :  [0, 0, 0]
+box-max                          :  [200, 200, 200]
+cell-size                        :  [1]
+deltaT                           :  0.0001
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  150000
+boundary-type                    :  [reflective, reflective, reflective]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  Sphere:
+    0:  
+      center                     :  [100, 100, 100]
+      radius                     :  10
+      particle-spacing           :  1.22462
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+thermostat:
+  initialTemperature             :  0.1
+  targetTemperature              :  100
+  deltaTemperature               :  0.1
+  thermostatInterval             :  100
+  addBrownianMotion              :  true
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  InvertedPressure
+load-balancing-interval          :  100
+subdivide-dimension              :  [true, true, true]
+
+
+Using 36 Threads
+MPI is running with 1 ranks.
+[2025-02-22 16:21:23.303] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-22 16:21:23.303] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank 0: 5497
+Number of particles at initialization globally : 5497
+
+
+Total number of particles at the end of Simulation: 5497
+Owned: 5497
+Halo : 0
+Measurements:
+Total accumulated                  : 2421983595546 ns (2421.984s)
+  Initialization                   :      85967055 ns (   0.086s) =  0.004%
+  Simulate                         : 2421897627432 ns (2421.898s) = 99.996%
+    PositionUpdate                 :   18093277329 ns (  18.093s) =  0.747%
+    UpdateContainer                :   93242107231 ns (  93.242s) =  3.850%
+    Boundaries                     :  255029803965 ns ( 255.030s) = 10.530%
+      HaloParticleExchange         :  254961492464 ns ( 254.961s) = 12.719%
+      ReflectParticlesAtBoundaries : 1749545346710 ns (1749.545s) = 87.278%
+      MigratingParticleExchange    :      68311501 ns (   0.068s) =  0.003%
+    ForceUpdateTotal               :  275178156115 ns ( 275.178s) = 11.362%
+      ForceUpdateNonTuning         :  275044097985 ns ( 275.044s) = 99.951%
+    VelocityUpdate                 :   25796338438 ns (  25.796s) =  1.065%
+    Thermostat                     :     546467290 ns (   0.546s) =  0.023%
+    LoadBalancing                  :    4150107866 ns (   4.150s) =  0.171%
+One iteration                      :      16145984 ns (   0.016s) =  0.001%
+Total wall-clock time              : 2421983595546 ns (2421.984s) =100.000%
+
+Tuning iterations                  : 0 / 150000 = 0%
+MFUPs/sec                          : 2.99642

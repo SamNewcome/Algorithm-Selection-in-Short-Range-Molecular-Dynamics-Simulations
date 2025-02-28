@@ -1,0 +1,251 @@
+#==================================================#
+ num nodes:  5
+ num tasks:  40
+ cpus per task:  9
+ nodes used:  node[0095,0117,0121,0129,0139]
+ job cpus used:  144(x5)
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VerletClusterLists, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  30
+verlet-skin-radius-per-timestep  :  0.01
+verlet-cluster-size              :  4
+selector-strategy                :  Fastest-Mean-Value
+tuning-strategies                :  [decision-tree-tuning]
+tuning-metric                    :  time
+tuning-interval                  :  5000
+tuning-samples                   :  30
+use-LOESS-smoothening            :  false
+model-filename                   :  model.pkl
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c01, lc_c01_combined_SoA, lc_c04, lc_c04_HCP, lc_c04_combined_SoA, lc_c08, lc_c18, lc_sliced, lc_sliced_c02, vl_list_iteration, vlc_c01, vlc_c18, vlc_c08, vlc_sliced, vlc_sliced_c02, vlp_c01, vlp_c18, vlp_sliced, vlp_sliced_c02]
+  data-layout                    :  [AoS, SoA]
+  newton3                        :  [disabled, enabled]
+cutoff                           :  3
+box-min                          :  [-0.561, -0.561, -0.561]
+box-max                          :  [60.561, 60.561, 80.5]
+cell-size                        :  [0.5, 1]
+deltaT                           :  5e-05
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  600000
+boundary-type                    :  [periodic, periodic, reflective]
+Sites:                           
+  0:
+    epsilon                      :  0.5
+    sigma                        :  0.5
+    nu                           :  0
+    mass                         :  2
+  1:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  CubeClosestPacked:
+    0:  
+      particle-spacing           :  1.122
+      box-length                 :  [60, 60, 30]
+      bottomLeftCorner           :  [0, 0, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  1
+  CubeClosestPacked:
+    1:  
+      particle-spacing           :  0.6
+      box-length                 :  [60, 60, 30]
+      bottomLeftCorner           :  [0, 0, 30.1]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+globalForce                      :  [0, 0, -12.44]
+thermostat:
+  initialTemperature             :  40
+  targetTemperature              :  40
+  deltaTemperature               :  10
+  thermostatInterval             :  100
+  addBrownianMotion              :  true
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  false
+no-progress-bar                  :  true
+load-balancer                    :  InvertedPressure
+load-balancing-interval          :  5000
+subdivide-dimension              :  [true, true, true]
+
+
+Using 9 Threads
+MPI is running with 40 ranks.
+[2025-02-28 10:07:16.698] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-28 10:07:16.698] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank  1: 12078
+Number of particles at initialization on rank  2: 47850
+Number of particles at initialization on rank  3: 36250
+Number of particles at initialization on rank  4: 0
+Number of particles at initialization on rank  5: 7533
+Number of particles at initialization on rank  6: 12077
+Number of particles at initialization on rank  7: 47850
+Number of particles at initialization on rank  8: 36250
+Number of particles at initialization on rank  9: 0
+Number of particles at initialization on rank 10: 7533
+Number of particles at initialization on rank 11: 12077
+Number of particles at initialization on rank 12: 47850
+Number of particles at initialization on rank 13: 36250
+Number of particles at initialization on rank 14: 0
+Number of particles at initialization on rank 15: 7533
+Number of particles at initialization on rank 16: 12078
+Number of particles at initialization on rank 17: 47850
+Number of particles at initialization on rank 18: 36250
+Number of particles at initialization on rank 19: 0
+Number of particles at initialization on rank 20: 7533
+Number of particles at initialization on rank 21: 12194
+Number of particles at initialization on rank 22: 48807
+Number of particles at initialization on rank 23: 36975
+Number of particles at initialization on rank 24: 0
+Number of particles at initialization on rank 25: 7533
+Number of particles at initialization on rank 26: 12193
+Number of particles at initialization on rank 27: 48807
+Number of particles at initialization on rank 28: 36975
+Number of particles at initialization on rank 29: 0
+Number of particles at initialization on rank 30: 7254
+Number of particles at initialization on rank 31: 11729
+Number of particles at initialization on rank 32: 46893
+Number of particles at initialization on rank 33: 35525
+Number of particles at initialization on rank 34: 0
+Number of particles at initialization on rank 35: 7254
+Number of particles at initialization on rank 36: 11729
+Number of particles at initialization on rank 37: 46893
+Number of particles at initialization on rank 38: 35525
+Number of particles at initialization on rank  0: 7533
+Number of particles at initialization globally  : 828661
+Number of particles at initialization on rank 39: 0
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [15.4391, 30.5642, 17.8975]
+Size new box : [15.7057, 30.1403, 12.4496]
+Relative diff: [1.01727, 0.98613, 0.695606]
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [15.4391, 30.5578, 17.8975]
+Size new box : [15.7057, 30.9817, 12.4496]
+Relative diff: [1.01727, 1.01387, 0.695606]
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [15.7522, 30.5578, 17.8975]
+Size new box : [15.1191, 30.9817, 12.4496]
+Relative diff: [0.959814, 1.01387, 0.695606]
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [16.1068, 30.5578, 17.8975]
+Size new box : [15.8146, 30.9817, 12.4496]
+Relative diff: [0.981861, 1.01387, 0.695606]
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [15.7522, 30.5642, 17.8975]
+Size new box : [15.1191, 30.1403, 12.4496]
+Relative diff: [0.959814, 0.98613, 0.695606]
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [13.824, 30.5578, 17.8975]
+Size new box : [14.4825, 30.9817, 12.4496]
+Relative diff: [1.04764, 1.01387, 0.695606]
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [13.824, 30.5642, 17.8975]
+Size new box : [14.4825, 30.1403, 12.4496]
+Relative diff: [1.04764, 0.98613, 0.695606]
+[2025-02-28 10:11:55.319] [AutoPasLog] [warning] [LogicHandler.h:225] LogicHandler.resize(): Domain size changed drastically in dimension 2! Gathered AutoTuning information might not be applicable anymore!
+Size old box : [16.1068, 30.5642, 17.8975]
+Size new box : [15.8146, 30.1403, 12.4496]
+Relative diff: [0.981861, 0.98613, 0.695606]
+
+
+Total number of particles at the end of Simulation: 2257530
+Owned: 828661
+Halo : 1428869
+Measurements:
+Total accumulated                  : 1467608659528679 ns (1467608.660s)
+  Initialization                   :     219964321099 ns (    219.964s) =  0.015%
+  Simulate                         : 1467388695172847 ns (1467388.695s) = 99.985%
+    PositionUpdate                 :    2525497614209 ns (   2525.498s) =  0.172%
+    UpdateContainer                :   12014356483700 ns (  12014.356s) =  0.819%
+    Boundaries                     : 1009015963763799 ns (1009015.964s) = 68.763%
+      HaloParticleExchange         :  485902483538056 ns ( 485902.484s) = 48.106%
+      ReflectParticlesAtBoundaries :    1041740085249 ns (   1041.740s) =  0.103%
+      MigratingParticleExchange    :  523113480225743 ns ( 523113.480s) = 51.790%
+    ForceUpdateTotal               :  433082163262515 ns ( 433082.163s) = 29.514%
+      Tuning                       :    2811692681423 ns (   2811.693s) =  0.649%
+      ForceUpdateTuning            :    2811692681423 ns (   2811.693s) =  0.649%
+      ForceUpdateNonTuning         :  430251284094210 ns ( 430251.284s) = 99.346%
+    VelocityUpdate                 :    2212924087832 ns (   2212.924s) =  0.151%
+    Thermostat                     :    7276299316767 ns (   7276.299s) =  0.496%
+    LoadBalancing                  :     166492801348 ns (    166.493s) =  0.011%
+One iteration                      :       2445647825 ns (      2.446s) =  0.000%
+Total wall-clock time              :   36690214568600 ns (  36690.215s) =  2.500%
+
+Tuning iterations                  : 3600 / 600000 = 0.6%
+MFUPs/sec                          : 0.0559861
+########################################
+#            Job Accounting            #
+########################################
+Name                : RT_RF
+User                : newcomes
+Account             : hsuper
+Partition           : small
+QOS                 : normal
+NNodes              : 5
+Nodes               : node[0095,0117,0121,0129,0139]
+Cores               : 720 (360 physical)
+GPUs                : 0
+State               : COMPLETED
+ExitCode            : 0:0
+Submit              : 2025-02-28T10:07:01
+Start               : 2025-02-28T10:07:13
+End                 : 2025-02-28T20:18:47
+Waited              :   00:00:12
+Reserved walltime   : 1-00:00:00
+Used walltime       :   10:11:34
+Used CPU time       : 90-20:50:44 (Efficiency: 59.43%)
+% User (Computation): 99.88%
+% System (I/O)      :  0.12%
+Mem reserved        : 1225000M
+Max Mem used        : 3.87G (node0095)
+Max Disk Write      : 692.33M (node0095)
+Max Disk Read       : 12.16G (node0095)
+Energy (CPU+Mem)    : 23.24kWh (9.76kg CO2, 12.09€)

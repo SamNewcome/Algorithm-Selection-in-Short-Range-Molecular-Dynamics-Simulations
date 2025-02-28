@@ -1,0 +1,143 @@
+#==================================================#
+ num nodes:  2
+ num tasks:  6
+ cpus per task:  24
+ nodes used:  node[0062,0400]
+ job cpus used:  144(x2)
+#==================================================#
+cp: -r not specified; omitting directory '../run_0'
+cp: -r not specified; omitting directory '../run_1'
+cp: -r not specified; omitting directory '../run_3'
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+WARNING: Simulation box increased due to particles being too close to the boundaries.
+# Running single-site MD simulation.
+
+container                        :  [LinkedCells, VarVerletListsAsBuild, VerletLists, VerletListsCells, PairwiseVerletLists]
+fastParticlesThrow               :  true
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.06
+selector-strategy                :  Fastest-Mean-Value
+tuning-strategies                :  []
+tuning-metric                    :  time
+tuning-interval                  :  2000
+tuning-samples                   :  10
+use-LOESS-smoothening            :  false
+PairwiseInteraction:             
+  functor                        :  Lennard-Jones (12-6) AVX intrinsics
+  traversal                      :  [lc_c08]
+  data-layout                    :  [SoA]
+  newton3                        :  [enabled]
+cutoff                           :  3
+box-min                          :  [-0.5, 0, -0.5]
+box-max                          :  [120.5, 480, 120.5]
+cell-size                        :  [0.5]
+deltaT                           :  0.00182367
+pause-simulation-during-tuning   :  false
+sorting-threshold                :  8
+iterations                       :  100000
+boundary-type                    :  [periodic, periodic, periodic]
+Sites:                           
+  0:
+    epsilon                      :  1
+    sigma                        :  1
+    nu                           :  0
+    mass                         :  1
+Objects:                         
+  CubeUniform:
+    0:  
+      numberOfParticles          :  100
+      box-length                 :  [120, 230, 120]
+      bottomLeftCorner           :  [0, 0, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+  CubeUniform:
+    1:  
+      numberOfParticles          :  100
+      box-length                 :  [120, 230, 120]
+      bottomLeftCorner           :  [0, 250, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+  CubeClosestPacked:
+    0:  
+      particle-spacing           :  1
+      box-length                 :  [120, 18, 120]
+      bottomLeftCorner           :  [0, 231, 0]
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+use-tuning-logger                :  false
+output-suffix                    :  
+log-level                        :  info
+no-end-config                    :  true
+no-progress-bar                  :  true
+load-balancer                    :  None
+load-balancing-interval          :  1000
+subdivide-dimension              :  [false, true, false]
+
+
+Using 24 Threads
+MPI is running with 6 ranks.
+[2025-02-22 05:45:34.048] [AutoPasLog] [info] [AutoPasImpl.h:70] AutoPas Version: 3.0.0-a3b2acc
+[2025-02-22 05:45:34.048] [AutoPasLog] [info] [AutoPasImpl.h:71] Compiled with  : GCC 13.2.0
+Number of particles at initialization on rank 1: 44
+Number of particles at initialization on rank 2: 194062
+Number of particles at initialization on rank 3: 176428
+Number of particles at initialization on rank 4: 46
+Number of particles at initialization on rank 0: 34
+Number of particles at initialization globally : 370640
+Number of particles at initialization on rank 5: 26
+
+
+Total number of particles at the end of Simulation: 470726
+Owned: 370640
+Halo : 100086
+Measurements:
+Total accumulated                  : 54119688333916 ns (54119.688s)
+  Initialization                   :     1674637798 ns (    1.675s) =  0.003%
+  Simulate                         : 54118013689844 ns (54118.014s) = 99.997%
+    PositionUpdate                 :   410721357999 ns (  410.721s) =  0.759%
+    UpdateContainer                :   818294914478 ns (  818.295s) =  1.512%
+    Boundaries                     : 28793347824390 ns (28793.348s) = 53.205%
+      HaloParticleExchange         : 19914541568432 ns (19914.542s) = 69.163%
+      ReflectParticlesAtBoundaries :      180283443 ns (    0.180s) =  0.001%
+      MigratingParticleExchange    :  8878806255958 ns ( 8878.806s) = 30.836%
+    ForceUpdateTotal               : 23640345971170 ns (23640.346s) = 43.683%
+      ForceUpdateNonTuning         : 23639697450887 ns (23639.697s) = 99.997%
+    VelocityUpdate                 :   451100009160 ns (  451.100s) =  0.834%
+    LoadBalancing                  :     2136018138 ns (    2.136s) =  0.004%
+One iteration                      :      541180136 ns (    0.541s) =  0.001%
+Total wall-clock time              :  9019964445472 ns ( 9019.964s) = 16.667%
+
+Tuning iterations                  : 0 / 100000 = 0%
+MFUPs/sec                          : 0.681978
+########################################
+#            Job Accounting            #
+########################################
+Name                : EL_LCC08CSF0.5
+User                : newcomes
+Account             : hsuper
+Partition           : small
+QOS                 : normal
+NNodes              : 2
+Nodes               : node[0062,0400]
+Cores               : 288 (144 physical)
+GPUs                : 0
+State               : COMPLETED
+ExitCode            : 0:0
+Submit              : 2025-02-21T12:23:42
+Start               : 2025-02-22T05:45:31
+End                 : 2025-02-22T08:15:54
+Waited              : 17:21:48
+Reserved walltime   : 12:00:00
+Used walltime       : 02:30:23
+Used CPU time       : 8-20:39:59 (Efficiency: 58.92%)
+% User (Computation): 99.97%
+% System (I/O)      :  0.03%
+Mem reserved        : 490000M
+Max Mem used        : 4.42G (node0062)
+Max Disk Write      : 37.54M (node0062,node0400)
+Max Disk Read       : 5.31M (node0062)
+Energy (CPU+Mem)    : 2.33kWh (0.98kg CO2, 1.21€)
