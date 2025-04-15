@@ -1,0 +1,54 @@
+container                        :  [LinkedCells, VarVerletListsAsBuild, VerletLists, VerletListsCells, PairwiseVerletLists]
+traversal                            :  [lc_sliced, lc_sliced_c02, lc_c01, lc_c01_combined_SoA, lc_c04, lc_c04_HCP, lc_c04_combined_SoA, lc_c08, lc_c18, vl_list_iteration, vlc_c01, vlc_c08, vlc_c18, vlc_sliced, vlc_sliced_c02, vlp_c01, vlp_c18, vlp_sliced, vlp_sliced_c02]
+data-layout                      :  [AoS, SoA]
+newton3                          :  [enabled, disabled]
+verlet-rebuild-frequency         :  10
+verlet-skin-radius-per-timestep  :  0.06
+verlet-cluster-size              :  4
+selector-strategy                :  Fastest-Mean-Value
+tuning-strategies                :  []
+#model-filename                   :  model.pkl
+tuning-interval                  :  1000
+tuning-samples                   :  10
+functor                          :  Lennard-Jones-AVX
+cutoff                           :  3
+box-min                          :  [0, 0, 0]
+box-max                          :  [120, 480, 120]
+cell-size                        :  [1]
+deltaT                           :  0.00182367
+iterations                       :  100000
+boundary-type                    : [periodic, periodic, periodic]
+Sites:
+  0:
+    epsilon                      :  1.
+    sigma                        :  1.
+    mass                         :  1.
+Objects:                         
+  CubeClosestPacked:
+    0:  
+      box-length                 :  [120, 18, 120]
+      bottomLeftCorner           :  [0, 231, 0]
+      particle-spacing           :  1.
+      velocity                   :  [0, 0, 0]
+      particle-type-id           :  0
+  CubeUniform:
+    0:
+      numberOfParticles              :  100
+      box-length                     :  [120, 230, 120]
+      bottomLeftCorner               :  [0, 0, 0]
+      velocity                       :  [0, 0, 0]
+      particle-type-id               :  0
+    1:
+      numberOfParticles              :  100
+      box-length                     :  [120, 230, 120]
+      bottomLeftCorner               :  [0, 250, 0]
+      velocity                       :  [0, 0, 0]
+      particle-type-id               :  0
+no-end-config                    :  true
+no-progress-bar                  :  true
+# vtk-filename                     :  explodingLiquid
+# vtk-write-frequency              :  2000
+fastParticlesThrow               :  true
+load-balancer                    :  none
+subdivide-dimension              :  [false, true, false]
+load-balancing-interval          :  1000
